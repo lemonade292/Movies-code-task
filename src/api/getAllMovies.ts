@@ -7,3 +7,4 @@ export const getAllMovies = async(): Promise<Movie[]> => {
      
     return parsedMoviesFromAPI.results.map((movieFromAPI: MovieItemFromAPI) => new Movie(movieFromAPI));
 }
+

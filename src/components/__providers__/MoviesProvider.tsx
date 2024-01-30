@@ -26,7 +26,7 @@ export const MoviesProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const { movieID } = useParams();
-  console.log(movieID);
+  //console.log(movies.movieId);
 
   useEffect(() => {
     setLoading(true);

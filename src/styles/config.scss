@@ -1,0 +1,37 @@
+// Spacings
+$spacing-xxxs: 2px;
+$spacing-xxs: 4px;
+$spacing-xs: 6px;
+$spacing-s: 8px;
+$spacing-m: 10px;
+$spacing-ml: 12px;
+$spacing-l: 16px;
+$spacing-xl: 20px;
+$spacing-xxl: 32px;
+$spacing-xxxl: 64px;
+
+// Fonts
+$default-font: sans-serif;
+$title-font: 'roboto';
+$font-size-xs: 14px;
+$font-size-s: 18px;
+$font-size-m: 24px;
+$font-size-l: 42px;
+$font-size-xl: 64px;
+$font-size-xxl: 120px;
+
+// Misc
+$default-border-radius: 8px;
+$z-index-0: 0;
+$z-index-1: 1;
+
+//Colors
+$text-color: rgb(245, 245, 241);
+$primary-color: rgb(34, 34, 31);
+$secondary-color: rgb(54, 54, 54);
+
+* {
+  margin: 0px;
+  color: $text-color;
+  font-family: $default-font;
+}

@@ -1,3 +1,44 @@
-.MoviesList {
-    box-sizing: border-box;
+@import "../../styles/config.scss";
+.moviesList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    background-color: $primary-color;
+
+    .movieItem{
+        width: 300px;
+        height: 350px;
+        margin-top: 20px;
+        margin-left: 20px;
+        border-radius: 3px;
+        box-shadow: 0.2px 3px 5px rgba(0,0,0,0.1);
+        background-color: $secondary-color;
+        img{
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            max-height: 280px;
+            object-fit: cover;
+            object-position: center 10%;
+        }
+        p{
+            background-color: $secondary-color;
+            height: 20px;
+            font-weight:bold;
+            text-align: center;            
+        }
+        .voteInfo{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top:5px;
+            .voteCount{
+                background-color: $primary-color;
+                padding: 5px 10px;
+                border-radius:3px;
+                
+            }
+        }
+    }
 }

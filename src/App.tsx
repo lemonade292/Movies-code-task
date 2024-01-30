@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./styles/config.scss";
 import { Route, Routes } from "react-router-dom";
 import { MoviesList } from "./components/MoviesList/MoviesList";
 import { MovieDetail } from "./components/MovieDetail/MovieDetail";
@@ -11,7 +11,6 @@ const App: React.FC = () => {
       <div className="App">
         <Routes>
           <Route path="/" element={<MoviesList />} />
-          <Route path="/:movieID" element={<MovieDetail />} />
         </Routes>
       </div>
     </MoviesProvider>

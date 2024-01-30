@@ -7,6 +7,6 @@ export const getMovieByID = async (movieID: string): Promise<Movie> => {
     options
   );
   const parsedMovieFromAPI: MovieItemFromAPI = await response.json();
-
+    
   return new Movie(parsedMovieFromAPI);
 };
