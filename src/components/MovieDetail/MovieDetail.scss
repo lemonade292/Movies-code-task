@@ -3,7 +3,7 @@
 #movieDetail_collapsed,
 #movieDetail_expanded {
     overflow: hidden;
-    transition: max-height 0.5s ease; 
+    transition: max-height 0.7s ease-in; 
 }
 
 #movieDetail_collapsed {
@@ -11,22 +11,44 @@
 }
 
 #movieDetail_expanded {
-    max-height: calc(100vh - 500px);
+    max-height: calc(100vh - 450px);
 }
 .movieDetail {
     overflow: hidden;
   position: relative;
+  font-size: $font-size-m;
   &-backdrop {
     filter: brightness(50%);
     width: 100vw;
-    max-height: calc(100vh - 500px);
+    max-height: calc(100vh - 450px);
     object-fit: cover;
     object-position: center 10%;
   }
-
+  &-closeButton{
+    position: absolute;
+    top: $spacing-xl;
+    right: $spacing-xl;
+    z-index: $z-index-1;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;    
+    border: none;
+    cursor:pointer;
+    img{
+      width: 64px;
+      padding: 0;
+      transition: transform .2s
+      
+    }   
+    img:hover{
+      transform: scale(1.4);
+      
+    }
+  }
+  
   &-textContainer {
     position: absolute;
-    bottom: 20px;
+    bottom: $spacing-xl;
     z-index: $z-index-1;
     padding: 2em 8em;
     max-width: 60%;
@@ -34,16 +56,85 @@
     h1 {
         font-size: $font-size-xxl;
         text-transform: uppercase;
-        margin-bottom: $spacing-xxl;
+        margin-bottom: $spacing-xl;
 
     }
     p {
-        font-size: $font-size-m;
+        
         margin-bottom: $spacing-xxl;
-    }
-    &-genreContainer {
-
-    }
-
+        margin-left: $spacing-xxl;
+        
+    }  
   }
+
+  &-infoContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+  }
+  &-genreContainer {
+    
+    margin-left: $spacing-xxl;    
+    
+  }
+  &-votesContainer{
+    margin-right: $spacing-xxxl;
+  }
+  &-votesLabel{
+    background-color: $primary-color;
+    padding: $spacing-s $spacing-ml;
+    font-weight: bold;
+                border-radius:3px;
+  }
+  &-buttonContainer{
+    margin-left: $spacing-xxl;
+    position: relative;
+            display: inline-block;
+    button{
+      height: 60px;
+      width: 180px;
+      margin-right: $spacing-xl;
+      font-size: $font-size-s;
+      border-radius: 3px;
+      cursor: pointer;
+      border: none;
+      opacity: 1;
+      font-weight: bold;
+    }
+    &-watchButton{
+      background-color: $purple-color;
+      color: $primary-color;
+      transition: transform .2s ease-in
+      
+    }    
+    &-watchlistButton{
+      color: $purple-color;
+      background-color: transparent;
+      border: 3px solid $purple-color!important;
+      transition: transform .2s ease-in-out
+    }  
+    &-watchButton:hover{
+      transform: scale(1.1);
+    }
+    @keyframes swapColors {
+      0% {
+          background-color: transparent;
+          color: $purple-color;
+      }       
+      
+      100% {
+          background-color: $purple-color;
+          color: $primary-color;
+      }
+  }
+    &-watchlistButton:hover{
+      color: $primary-color;
+      background:linear-gradient(to left, transparent, $purple-color);
+      background-color: $purple-color;
+      animation: swapColors 1s ease-out;
+    }
+  
+
+}
 }

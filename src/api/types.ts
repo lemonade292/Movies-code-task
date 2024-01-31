@@ -30,6 +30,7 @@ export class Movie implements IMovie{
     public voteCount: number;
     public backdropURL: string;
     public genreList: string[];
+    public release_date: string;
 
     constructor(movieFromAPI: MovieItemFromAPI) {
         this.ID = movieFromAPI.id;
@@ -40,6 +41,7 @@ export class Movie implements IMovie{
         this.voteAverage = movieFromAPI.vote_average
         this.voteCount = movieFromAPI.vote_count
         this.genreList = this.buildGenreList(movieFromAPI.genre_ids)
+        this.release_date= movieFromAPI.release_date
     }
 
     private buildImgURL(url:string): string {

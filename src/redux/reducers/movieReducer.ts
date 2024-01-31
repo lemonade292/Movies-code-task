@@ -13,3 +13,4 @@ export default function moviesReducer(state = {movies: [], error: ''}, action: a
       return state;
   }
 }
+ 

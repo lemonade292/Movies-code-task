@@ -37,14 +37,20 @@ export const MoviesList: React.FC<any> = ({ movies, fetchMovies }) => {
           movies.map((movie: Movie) => (
             <div
               className="movieItem"
-              onClick={() =>{ setSelectedMovie(movie); setIsDetailOpen(true)}}
+              onClick={() => {
+                setSelectedMovie(movie);
+                setIsDetailOpen(true);
+              }}
               key={movie.ID}
             >
               <img src={movie.imageURL} alt={movie.title} />
-              <p>{movie.title}</p>
-              <div className="voteInfo">
-                <p className="voteCount">{movie.renderVotes()}</p>
-                <p>{movie.voteCount}</p>
+              <div className="movieItem-infoContainer">
+                <p className="movieItem-movieTitle">{movie.title}</p>
+                <div className="movieItem-dateVoteInfo">
+                  <p className="movieItem-date"> Released: {movie.release_date}</p>
+                  <p className="movieItem-voteCount">{movie.renderVotes()}</p>
+                  
+                </div>
               </div>
             </div>
           ))}

@@ -1,5 +1,5 @@
 import React from "react";
-
+import closeButton from "./closeButton.svg";
 import { Movie } from "../../api/types";
 import "./MovieDetail.scss";
 
@@ -17,13 +17,16 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({
     <>
       {movie ? (
         <div
-          className={
-           "movieDetail"
-          }
-          id={isDetailOpen? 'movieDetail_expanded' : 'movieDetail_collapsed'}
+          className={"movieDetail"}
+          id={isDetailOpen ? "movieDetail_expanded" : "movieDetail_collapsed"}
           data-testid="movieDetail"
         >
-          <button onClick={() => setIsDetailOpen(false)}>X</button>
+          <button
+            className="movieDetail-closeButton"
+            onClick={() => setIsDetailOpen(false)}
+          >
+            <img src={closeButton} alt="close button" />
+          </button>
           <img
             src={movie.backdropURL}
             alt="backdrop"
@@ -32,13 +35,29 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({
 
           <div className="movieDetail-textContainer">
             <h1>{movie.title}</h1>
-            <div className="movieDetail-genreContainer">
-              {movie.genreList.map((genre) => (
-                <label>{genre}</label>
-              ))}
+            <div className="movieDetail-infoContainer">
+              <div className="movieDetail-genreContainer">
+                {movie.genreList.map((genre, index) =>
+                  index !== movie.genreList.length - 1 ? (
+                    <label>{genre} | </label>
+                  ) : (
+                    <label>{genre}</label>
+                  )
+                )}
+              </div>
+              <div className="movieDetail-votesContainer">
+                <label className="movieDetail-votesLabel">
+                  {movie.renderVotes()}
+                </label>
+                <label> {movie.voteCount} votes</label>
+              </div>
             </div>
+
             <p>{movie.overview}</p>
-            <label>{movie.renderVotes()}</label>
+            <div className="movieDetail-buttonContainer">
+                    <button className="movieDetail-buttonContainer-watchButton">Watch Now</button>
+                    <button className="movieDetail-buttonContainer-watchlistButton"> Add to Watchlist</button>
+            </div>
           </div>
         </div>
       ) : (

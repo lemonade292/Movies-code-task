@@ -1,63 +1,85 @@
 @import "../../styles/config.scss";
 .moviesList {
-    width: 100%;
-    background-color: $primary-color;
-    
-    .moviesContainer_collapsed , .moviesContainer_expanded{
-        padding: $spacing-xxl 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        box-sizing: border-box;
-        transition: max-height 0.5s ease; 
-        height: 100%;  
-        &::-webkit-scrollbar {
-            display: none;
-          }
-     }
-    .moviesContainer{
-        &_collapsed {
-           max-height: 500px;
-            overflow: scroll;  
-            overflow-x: hidden;        
-        }
-        &_expanded {
-            max-height: 100%;   
-        }
-}
-    .movieItem{
-        min-width: 300px;
-        height: 350px;
-        margin-top: 20px;
-        margin-left: 20px;
-        border-radius: 3px;
-        box-shadow: 0.2px 3px 5px rgba(0,0,0,0.1);
-        background-color: $secondary-color;
-        img{
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            max-height: 280px;
-            object-fit: cover;
-            object-position: center 10%;
-        }
-        p{
-            background-color: $secondary-color;
-            height: 20px;
-            font-weight:bold;
-            text-align: center;            
-        }
-        .voteInfo{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin-top:5px;
-            .voteCount{
-                background-color: $primary-color;
-                padding: 5px 10px;
-                border-radius:3px;
-                
-            }
-        }
+  width: 100%;
+  background-color: $primary-color;
+
+  .moviesContainer_collapsed,
+  .moviesContainer_expanded {
+    padding: $spacing-xxl 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: max-height 0.7s ease-in;
+    height: 100%;
+    &::-webkit-scrollbar {
+      display: none;
     }
+  }
+  .moviesContainer {
+    &_collapsed {
+      max-height: 450px;
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+    &_expanded {
+      max-height: 100%;
+    }
+  }
+  .movieItem {
+    min-width: 300px;
+    height: 350px;
+    margin-top: $spacing-xl;
+    margin-left: $spacing-xl;
+    border-radius: 3px;
+    box-shadow: 0.2px 3px 5px rgba(0, 0, 0, 0.1);
+    background-color: $secondary-color;
+    transition: transform 0.2s;
+    position: relative;
+    cursor: pointer;
+    img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      max-height: 350px;
+      object-fit: cover;
+      object-position: center 10%;
+    }
+    &-infoContainer {
+      
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: auto;
+      width: 100%;
+      background-color: $secondary-color;
+      background: linear-gradient(180deg, rgba(40,40,40,0.6) 0%, rgba(40,40,40,0.75) 15%,rgba(40,40,40,0.9) 30%, rgba(40,40,40,1) 100%);
+     
+    } &-movieTitle {
+        font-weight: bold;
+        text-align: center;
+        font-size: $font-size-s;
+        margin-top: $spacing-ml;
+      }
+      &-dateVoteInfo {
+        height: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;  
+        margin: $spacing-m;  
+      }     
+      &-voteCount {
+          background-color: $primary-color;
+          padding: $spacing-s $spacing-ml;;
+          border-radius: 3px;
+        }
+  }
+  .movieItem:hover {
+    transform: scale(1.05);
+  }
 }
