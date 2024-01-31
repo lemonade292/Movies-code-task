@@ -1,10 +1,25 @@
 @import "../../styles/config.scss";
+
+#movieDetail_collapsed,
+#movieDetail_expanded {
+    overflow: hidden;
+    transition: max-height 0.5s ease; 
+}
+
+#movieDetail_collapsed {
+    max-height: 0px;
+}
+
+#movieDetail_expanded {
+    max-height: calc(100vh - 500px);
+}
 .movieDetail {
+    overflow: hidden;
   position: relative;
   &-backdrop {
     filter: brightness(50%);
     width: 100vw;
-    max-height: calc(100vh - 450px);
+    max-height: calc(100vh - 500px);
     object-fit: cover;
     object-position: center 10%;
   }
@@ -27,7 +42,7 @@
         margin-bottom: $spacing-xxl;
     }
     &-genreContainer {
-        
+
     }
 
   }

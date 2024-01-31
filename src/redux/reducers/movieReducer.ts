@@ -1,21 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getAllMovies } from "../../api/getAllMovies";
+import {
+  GET_MOVIES_SUCCESS,
+  GET_MOVIES_FAILURE,
+} from "../actions/movieActions";
 
-export const moviesSlice = createSlice({
-  name: "movies",
-  initialState: {
-    value: [],
-  },
-  reducers: {
-    getMovies: (state) => {
-      getAllMovies().then((response) => {
-        return response;
-      });
-    },
-  },
-});
-
-// Action creators are generated for each case reducer function
-export const { getMovies } = moviesSlice.actions;
-
-export default moviesSlice.reducer;
+export default function moviesReducer(state = {movies: [], error: ''}, action: any) {
+  switch (action.type) {
+    case GET_MOVIES_SUCCESS:
+      return action.payload;
+    case GET_MOVIES_FAILURE:
+      return action.payload;
+    default:
+      return state;
+  }
+}

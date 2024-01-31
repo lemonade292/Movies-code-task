@@ -1,13 +1,32 @@
 @import "../../styles/config.scss";
 .moviesList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     width: 100%;
     background-color: $primary-color;
-
+    
+    .moviesContainer_collapsed , .moviesContainer_expanded{
+        padding: $spacing-xxl 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        box-sizing: border-box;
+        transition: max-height 0.5s ease; 
+        height: 100%;  
+        &::-webkit-scrollbar {
+            display: none;
+          }
+     }
+    .moviesContainer{
+        &_collapsed {
+           max-height: 500px;
+            overflow: scroll;  
+            overflow-x: hidden;        
+        }
+        &_expanded {
+            max-height: 100%;   
+        }
+}
     .movieItem{
-        width: 300px;
+        min-width: 300px;
         height: 350px;
         margin-top: 20px;
         margin-left: 20px;

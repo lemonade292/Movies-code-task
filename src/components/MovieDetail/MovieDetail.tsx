@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useMoviesContext } from "../__providers__/MoviesProvider";
-import { useParams } from "react-router-dom";
-import { getMovieByID } from "../../api/getMovieByID";
+import React from "react";
+
 import { Movie } from "../../api/types";
 import "./MovieDetail.scss";
 
 interface MovieDetailProps {
   movie: Movie;
+  isDetailOpen: boolean;
+  setIsDetailOpen: (bol: boolean) => void;
 }
-export const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
+export const MovieDetail: React.FC<MovieDetailProps> = ({
+  movie,
+  isDetailOpen,
+  setIsDetailOpen,
+}) => {
   return (
     <>
       {movie ? (
-        <div className="movieDetail" data-testid="movieDetail">
+        <div
+          className={
+           "movieDetail"
+          }
+          id={isDetailOpen? 'movieDetail_expanded' : 'movieDetail_collapsed'}
+          data-testid="movieDetail"
+        >
+          <button onClick={() => setIsDetailOpen(false)}>X</button>
           <img
             src={movie.backdropURL}
             alt="backdrop"
@@ -20,11 +31,11 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
           />
 
           <div className="movieDetail-textContainer">
-            <h1>
-              {movie.title}
-            </h1>
+            <h1>{movie.title}</h1>
             <div className="movieDetail-genreContainer">
-           {movie.genreList.map(genre => <label>{genre}</label>)}
+              {movie.genreList.map((genre) => (
+                <label>{genre}</label>
+              ))}
             </div>
             <p>{movie.overview}</p>
             <label>{movie.renderVotes()}</label>
