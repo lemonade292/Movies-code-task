@@ -17,6 +17,11 @@ export interface MovieItemFromAPI {
     vote_count: number;
 }
 
+export type genreItem = {
+    id: number;
+    name:string;
+}
+
 interface IMovie {
     renderVotes(): string;
 };
@@ -29,7 +34,7 @@ export class Movie implements IMovie{
     public voteAverage: number;
     public voteCount: number;
     public backdropURL: string;
-    public genreList: string[];
+    public genreIds: number[];
     public release_date: string;
 
     constructor(movieFromAPI: MovieItemFromAPI) {
@@ -40,26 +45,26 @@ export class Movie implements IMovie{
         this.backdropURL = this.buildImgURL(movieFromAPI.backdrop_path)      
         this.voteAverage = movieFromAPI.vote_average
         this.voteCount = movieFromAPI.vote_count
-        this.genreList = this.buildGenreList(movieFromAPI.genre_ids)
+        this.genreIds = movieFromAPI.genre_ids
         this.release_date= movieFromAPI.release_date
     }
 
     private buildImgURL(url:string): string {
         return `https://image.tmdb.org/t/p/original${url}`;
     }
-    private buildGenreList(idList:number[]): string[]  {
-        const genreList = idList.map(id => {
-           const genre = MOVIE_GENRE_IDS.find(genre => genre.id === id)
-           if (!genre) {
-            return ''
-           }
-           return genre?.name
-        })
-        if (!genreList) {
-            return []
-        } 
-        return genreList
-    }
+    // private buildGenreList(idList:number[]): string[]  {
+    //     const genreList = idList.map(id => {
+    //        const genre = MOVIE_GENRE_IDS.find(genre => genre.id === id)
+    //        if (!genre) {
+    //         return ''
+    //        }
+    //        return genre?.name
+    //     })
+    //     if (!genreList) {
+    //         return []
+    //     } 
+    //     return genreList
+    // }
 
     public renderVotes(): string {
         return `${this.voteAverage.toFixed(1)}`;

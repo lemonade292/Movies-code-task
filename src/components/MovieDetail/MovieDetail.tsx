@@ -1,21 +1,42 @@
 import React from "react";
 import closeButton from "./closeButton.svg";
-import { Movie } from "../../api/types";
+import { Movie, genreItem } from "../../api/types";
+import { connect } from "react-redux";
 import "./MovieDetail.scss";
 
-interface MovieDetailProps {
+interface OwnProps {
   movie: Movie;
   isDetailOpen: boolean;
   setIsDetailOpen: (bol: boolean) => void;
 }
-export const MovieDetail: React.FC<MovieDetailProps> = ({
+interface ReduxProps {
+  genres: genreItem[];
+}
+
+const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
   movie,
   isDetailOpen,
   setIsDetailOpen,
+  genres,
 }) => {
+
+  const buildGenreList = (idList: number[]): string[] => {
+    const genreList = idList.map((id) => {
+      const genre = genres.find((genre) => genre.id === id);
+      if (!genre) {
+        return "";
+      }
+      return genre?.name;
+    });
+    if (!genreList) {
+      return [];
+    }
+    return genreList;
+  };
+
   return (
     <>
-      {movie ? (
+      {movie && genres ? (
         <div
           className={"movieDetail"}
           id={isDetailOpen ? "movieDetail_expanded" : "movieDetail_collapsed"}
@@ -37,13 +58,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({
             <h1>{movie.title}</h1>
             <div className="movieDetail-infoContainer">
               <div className="movieDetail-genreContainer">
-                {movie.genreList.map((genre, index) =>
-                  index !== movie.genreList.length - 1 ? (
-                    <label>{genre} | </label>
-                  ) : (
-                    <label>{genre}</label>
-                  )
-                )}
+                {buildGenreList(movie.genreIds).map(genre => <label>{genre}</label>)}
               </div>
               <div className="movieDetail-votesContainer">
                 <label className="movieDetail-votesLabel">
@@ -55,8 +70,13 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({
 
             <p>{movie.overview}</p>
             <div className="movieDetail-buttonContainer">
-                    <button className="movieDetail-buttonContainer-watchButton">Watch Now</button>
-                    <button className="movieDetail-buttonContainer-watchlistButton"> Add to Watchlist</button>
+              <button className="movieDetail-buttonContainer-watchButton">
+                Watch Now
+              </button>
+              <button className="movieDetail-buttonContainer-watchlistButton">
+                {" "}
+                Add to Watchlist
+              </button>
             </div>
           </div>
         </div>
@@ -66,3 +86,10 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({
     </>
   );
 };
+const mapStateToProps = (state: any, props: any) => {
+  return {
+    genres: state.genresStore.genres,
+  };
+};
+
+export const MovieDetailConnected = connect(mapStateToProps)(MovieDetail);

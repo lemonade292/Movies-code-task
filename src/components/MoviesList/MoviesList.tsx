@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesList.scss";
-
 import { Movie } from "../../api/types";
-import { MovieDetail } from "../MovieDetail/MovieDetail";
-import { fetchMovies } from "../../redux/actions/movieActions";
-import { connect } from "react-redux";
+import {  MovieDetailConnected } from "../MovieDetail/MovieDetail";
 
-export const MoviesList: React.FC<any> = ({ movies, fetchMovies }) => {
+import { connect } from "react-redux";
+import { fetchMovies } from "../../redux/actions/movieActions";
+import { fetchGenres } from "../../redux/actions/genresActions";
+
+interface ReduxProps {
+  movies: Movie[];
+  fetchMoviesAction: () => void;
+  fetchGenresAction: () => void;
+}
+
+export const MoviesList: React.FC<ReduxProps> = ({ movies, fetchMoviesAction, fetchGenresAction}) => {
   const [selectedMovie, setSelectedMovie] = useState<null | Movie>(null);
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
+
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    fetchMoviesAction();
+    fetchGenresAction()
+  }, [fetchMoviesAction, fetchGenresAction]);
 
   useEffect(() => {
     movies && setSelectedMovie(movies[0]);
@@ -20,7 +29,7 @@ export const MoviesList: React.FC<any> = ({ movies, fetchMovies }) => {
   return (
     <div className="moviesList" data-testid="moviesList">
       {selectedMovie && (
-        <MovieDetail
+        <MovieDetailConnected
           movie={selectedMovie}
           isDetailOpen={isDetailOpen}
           setIsDetailOpen={setIsDetailOpen}
@@ -65,8 +74,9 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-const mapActionsToProps = {
-  fetchMovies: fetchMovies,
+const mapActionsToProps =  {
+  fetchMoviesAction: fetchMovies,
+  fetchGenresAction: fetchGenres
 };
 
 export const MoviesListConnected = connect(
