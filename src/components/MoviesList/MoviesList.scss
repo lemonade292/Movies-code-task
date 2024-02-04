@@ -5,9 +5,10 @@
 
   
   .moviesListTitle_expanded{
-    margin-top: $spacing-xxxl;
+    padding-top: $spacing-xxxl;
     font-size: $font-size-xxl;
     text-align:center;
+    height: 100px;
   }
   .moviesListTitle_collapsed{
     display: none;
@@ -32,7 +33,7 @@
       overflow-x: hidden;
     }
     &_expanded {
-      max-height: 100%;
+      max-height: calc(100% - 164px);
     }
   }
   .movieItem {
