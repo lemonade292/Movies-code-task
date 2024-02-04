@@ -1,5 +1,5 @@
-import React from "react";
-import closeButton from "./closeButton.svg";
+import React, { useCallback } from "react";
+import closeButton from "../../assets/icons/closeButton.svg";
 import { Movie, genreItem } from "../../api/types";
 import { connect } from "react-redux";
 import "./MovieDetail.scss";
@@ -13,30 +13,34 @@ interface ReduxProps {
   genres: genreItem[];
 }
 
-const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
+export const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
   movie,
   isDetailOpen,
   setIsDetailOpen,
   genres,
 }) => {
+  
 
-  const buildGenreList = (idList: number[]): string[] => {
-    const genreList = idList.map((id) => {
-      const genre = genres.find((genre) => genre.id === id);
-      if (!genre) {
-        return "";
+  const buildGenreList = useCallback(
+    (idList: number[]): string[] => {
+      const genreList = idList.map((id) => {
+        const genre = genres.find((genre) => genre.id === id);
+        if (!genre) {
+          return "";
+        }
+        return genre?.name;
+      });
+      if (!genreList) {
+        return [];
       }
-      return genre?.name;
-    });
-    if (!genreList) {
-      return [];
-    }
-    return genreList;
-  };
+      return genreList;
+    },
+    [genres]
+  );
 
   return (
     <>
-      {movie && genres ? (
+      {movie && genres.length ? (
         <div
           className={"movieDetail"}
           id={isDetailOpen ? "movieDetail_expanded" : "movieDetail_collapsed"}
@@ -58,7 +62,9 @@ const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
             <h1>{movie.title}</h1>
             <div className="movieDetail-infoContainer">
               <div className="movieDetail-genreContainer">
-                {buildGenreList(movie.genreIds).map(genre => <label>{genre}</label>)}
+                {buildGenreList(movie.genreIds).map((genre,index) => (
+                  index<movie.genreIds.length-1 ? <label>{genre} | </label> : <label>{genre}</label>                  
+                ))}
               </div>
               <div className="movieDetail-votesContainer">
                 <label className="movieDetail-votesLabel">
@@ -81,7 +87,7 @@ const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
           </div>
         </div>
       ) : (
-        <span>Oops not found</span>
+        <span data-testid="movieNotFound">Oops not found</span>
       )}
     </>
   );

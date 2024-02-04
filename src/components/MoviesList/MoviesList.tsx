@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesList.scss";
 import { Movie } from "../../api/types";
-import {  MovieDetailConnected } from "../MovieDetail/MovieDetail";
+import { MovieDetailConnected } from "../MovieDetail/MovieDetail";
 
 import { connect } from "react-redux";
 import { fetchMovies } from "../../redux/actions/movieActions";
@@ -13,13 +13,17 @@ interface ReduxProps {
   fetchGenresAction: () => void;
 }
 
-export const MoviesList: React.FC<ReduxProps> = ({ movies, fetchMoviesAction, fetchGenresAction}) => {
+export const MoviesList: React.FC<ReduxProps> = ({
+  movies,
+  fetchMoviesAction,
+  fetchGenresAction,
+}) => {
   const [selectedMovie, setSelectedMovie] = useState<null | Movie>(null);
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetchMoviesAction();
-    fetchGenresAction()
+    fetchGenresAction();
   }, [fetchMoviesAction, fetchGenresAction]);
 
   useEffect(() => {
@@ -35,6 +39,13 @@ export const MoviesList: React.FC<ReduxProps> = ({ movies, fetchMoviesAction, fe
           setIsDetailOpen={setIsDetailOpen}
         />
       )}
+      <h1
+        className={
+          isDetailOpen
+            ? "moviesListTitle_collapsed"
+            : "moviesListTitle_expanded"
+        }
+      >Movies List</h1>
       <div
         className={
           isDetailOpen
@@ -45,7 +56,7 @@ export const MoviesList: React.FC<ReduxProps> = ({ movies, fetchMoviesAction, fe
         {movies &&
           movies.map((movie: Movie) => (
             <div
-              className="movieItem"
+              className="movieItem" data-testid="movieItem"
               onClick={() => {
                 setSelectedMovie(movie);
                 setIsDetailOpen(true);
@@ -56,9 +67,11 @@ export const MoviesList: React.FC<ReduxProps> = ({ movies, fetchMoviesAction, fe
               <div className="movieItem-infoContainer">
                 <p className="movieItem-movieTitle">{movie.title}</p>
                 <div className="movieItem-dateVoteInfo">
-                  <p className="movieItem-date"> Released: {movie.release_date}</p>
+                  <p className="movieItem-date">
+                    {" "}
+                    Released: {movie.release_date}
+                  </p>
                   <p className="movieItem-voteCount">{movie.renderVotes()}</p>
-                  
                 </div>
               </div>
             </div>
@@ -74,9 +87,9 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-const mapActionsToProps =  {
+const mapActionsToProps = {
   fetchMoviesAction: fetchMovies,
-  fetchGenresAction: fetchGenres
+  fetchGenresAction: fetchGenres,
 };
 
 export const MoviesListConnected = connect(

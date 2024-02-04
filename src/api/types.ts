@@ -1,5 +1,3 @@
-import { MOVIE_GENRE_IDS } from "../constants";
-
 export interface MovieItemFromAPI {
     adult: boolean;
     backdrop_path: string;
@@ -52,19 +50,6 @@ export class Movie implements IMovie{
     private buildImgURL(url:string): string {
         return `https://image.tmdb.org/t/p/original${url}`;
     }
-    // private buildGenreList(idList:number[]): string[]  {
-    //     const genreList = idList.map(id => {
-    //        const genre = MOVIE_GENRE_IDS.find(genre => genre.id === id)
-    //        if (!genre) {
-    //         return ''
-    //        }
-    //        return genre?.name
-    //     })
-    //     if (!genreList) {
-    //         return []
-    //     } 
-    //     return genreList
-    // }
 
     public renderVotes(): string {
         return `${this.voteAverage.toFixed(1)}`;
