@@ -12,17 +12,29 @@
 
 #movieDetail_expanded {
     max-height: calc(100vh - 450px);
+    @include for-phone-only {
+      min-height: calc(100vh - 450px);
+    }
 }
 .movieDetail {
     overflow: hidden;
   position: relative;
   font-size: $font-size-m;
+  @include for-lowResDesktop-only {
+    font-size: $font-size-s;
+  } 
+  @include for-phone-only {
+    font-size: $font-size-s;
+  } 
   &-backdrop {
     filter: brightness(50%);
     width: 100vw;
     max-height: calc(100vh - 450px);
     object-fit: cover;
     object-position: center 10%;
+    @include for-phone-only {
+      min-height: calc(100vh - 450px);
+    }
   }
   &-closeButton{
     position: absolute;
@@ -37,13 +49,16 @@
     img{
       width: 64px;
       padding: 0;
-      transition: transform .2s
-      
+      transition: transform .2s;
+      @include for-phone-only {
+        width: 48px;
+      }      
     }   
     img:hover{
       transform: scale(1.4);
       
     }
+
   }
   
   &-textContainer {
@@ -52,11 +67,25 @@
     z-index: $z-index-1;
     padding: 2em 8em;
     max-width: 60%;
-
+    @include for-lowResDesktop-only {
+      padding: $spacing-l $spacing-xl;
+      max-width: 70%;
+    } 
+    @include for-phone-only {
+      padding: $spacing-xl $spacing-xl;
+      max-width: 100%;
+    } 
     h1 {
-        font-size: $font-size-xxl;
+        font-size: $font-size-xl;
         text-transform: uppercase;
         margin-bottom: $spacing-xl;
+
+        @include for-lowResDesktop-only {
+          font-size: $font-size-l;
+        } 
+        @include for-phone-only {
+          font-size: $font-size-m;
+        } 
 
     }
     p {
@@ -80,17 +109,22 @@
   }
   &-votesContainer{
     margin-right: $spacing-xxxl;
+    @include for-phone-only {
+      margin-right: 0;
+      min-width: 145px;
+    } 
   }
   &-votesLabel{
     background-color: $primary-color;
     padding: $spacing-s $spacing-ml;
     font-weight: bold;
-                border-radius:3px;
+    border-radius:3px;
   }
   &-buttonContainer{
     margin-left: $spacing-xxl;
-    position: relative;
-            display: inline-block;
+    position: relative; 
+    display: flex;  
+    align-items: center; 
     button{
       height: 60px;
       width: 180px;
@@ -101,6 +135,10 @@
       border: none;
       opacity: 1;
       font-weight: bold;
+      @include for-phone-only {
+        height: 60px;
+        width: 140px;
+      } 
     }
     &-watchButton{
       background-color: $purple-color;
@@ -137,4 +175,5 @@
   
 
 }
+
 }

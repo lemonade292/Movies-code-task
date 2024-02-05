@@ -5,10 +5,10 @@
 
   
   .moviesListTitle_expanded{
-    padding-top: $spacing-xxxl;
-    font-size: $font-size-xxl;
+    padding-top: $spacing-xxl;
+    font-size: $font-size-xl;
     text-align:center;
-    height: 100px;
+    
   }
   .moviesListTitle_collapsed{
     display: none;
@@ -31,9 +31,12 @@
       max-height: 450px;
       overflow: scroll;
       overflow-x: hidden;
+      @include for-phone-only {
+        max-height: 450px
+      }
     }
     &_expanded {
-      max-height: calc(100% - 164px);
+      max-height: 100%;
     }
   }
   .movieItem {

@@ -47,7 +47,7 @@ export class Movie implements IMovie{
         this.release_date= movieFromAPI.release_date
     }
 
-    private buildImgURL(url:string): string {
+    public buildImgURL(url:string): string {
         return `https://image.tmdb.org/t/p/original${url}`;
     }
 
