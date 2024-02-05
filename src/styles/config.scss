@@ -12,7 +12,7 @@ $spacing-xxxl: 64px;
 
 // Fonts
 $default-font: sans-serif;
-$title-font: 'roboto';
+$title-font: "roboto";
 $font-size-xs: 14px;
 $font-size-s: 18px;
 $font-size-m: 24px;
@@ -29,7 +29,7 @@ $z-index-1: 1;
 $text-color: rgb(245, 245, 241);
 $primary-color: rgb(34, 34, 31);
 $secondary-color: rgb(54, 54, 54);
-$purple-color:#a131f6;
+$purple-color: #a131f6;
 
 * {
   margin: 0px;
@@ -37,19 +37,19 @@ $purple-color:#a131f6;
   font-family: $default-font;
 }
 body {
-    &::-webkit-scrollbar {
-        display: none;
-      }
-    background-color: $primary-color;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  background-color: $primary-color;
 }
-
 
 @mixin for-phone-only {
   @media (max-width: 599px) {
     @content;
   }
-}@mixin for-lowResDesktop-only {
-  @media (min-width: 600px) and (max-width:1000px){
+}
+@mixin for-lowResDesktop-only {
+  @media (min-width: 600px) and (max-width: 1000px) {
     @content;
   }
 }

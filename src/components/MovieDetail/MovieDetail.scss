@@ -2,30 +2,30 @@
 
 #movieDetail_collapsed,
 #movieDetail_expanded {
-    overflow: hidden;
-    transition: max-height 0.7s ease-in; 
+  overflow: hidden;
+  transition: max-height 0.7s ease-in;
 }
 
 #movieDetail_collapsed {
-    max-height: 0px;
+  max-height: 0px;
 }
 
 #movieDetail_expanded {
-    max-height: calc(100vh - 450px);
-    @include for-phone-only {
-      min-height: calc(100vh - 300px);
-    }
+  max-height: calc(100vh - 450px);
+  @include for-phone-only {
+    min-height: calc(100vh - 300px);
+  }
 }
 .movieDetail {
-    overflow: hidden;
+  overflow: hidden;
   position: relative;
   font-size: $font-size-m;
   @include for-lowResDesktop-only {
     font-size: $font-size-s;
-  } 
+  }
   @include for-phone-only {
     font-size: $font-size-s;
-  } 
+  }
   &-backdrop {
     filter: brightness(50%);
     width: 100vw;
@@ -36,31 +36,29 @@
       min-height: calc(100vh - 300px);
     }
   }
-  &-closeButton{
+  &-closeButton {
     position: absolute;
     top: $spacing-xl;
     right: $spacing-xl;
     z-index: $z-index-1;
     padding: 0;
     margin: 0;
-    background-color: transparent;    
+    background-color: transparent;
     border: none;
-    cursor:pointer;
-    img{
+    cursor: pointer;
+    img {
       width: 64px;
       padding: 0;
-      transition: transform .2s;
+      transition: transform 0.2s;
       @include for-phone-only {
         width: 48px;
-      }      
-    }   
-    img:hover{
-      transform: scale(1.4);
-      
+      }
     }
-
+    img:hover {
+      transform: scale(1.4);
+    }
   }
-  
+
   &-textContainer {
     position: absolute;
     bottom: $spacing-xl;
@@ -70,62 +68,57 @@
     @include for-lowResDesktop-only {
       padding: $spacing-l $spacing-xl;
       max-width: 70%;
-    } 
+    }
     @include for-phone-only {
       padding: $spacing-xl $spacing-xl;
       max-width: 100%;
-    } 
+    }
     h1 {
-        font-size: $font-size-xl;
-        text-transform: uppercase;
-        margin-bottom: $spacing-xl;
+      font-size: $font-size-xl;
+      text-transform: uppercase;
+      margin-bottom: $spacing-xl;
 
-        @include for-lowResDesktop-only {
-          font-size: $font-size-l;
-        } 
-        @include for-phone-only {
-          font-size: $font-size-m;
-        } 
-
+      @include for-lowResDesktop-only {
+        font-size: $font-size-l;
+      }
+      @include for-phone-only {
+        font-size: $font-size-m;
+      }
     }
     p {
-        
-        margin-bottom: $spacing-xxl;
-        margin-left: $spacing-xxl;
-        
-    }  
+      margin-bottom: $spacing-xxl;
+      margin-left: $spacing-xxl;
+    }
   }
 
-  &-infoContainer{
+  &-infoContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: $spacing-xl;
   }
   &-genreContainer {
-    
-    margin-left: $spacing-xxl;    
-    
+    margin-left: $spacing-xxl;
   }
-  &-votesContainer{
+  &-votesContainer {
     margin-right: $spacing-xxxl;
     @include for-phone-only {
       margin-right: 0;
       min-width: 145px;
-    } 
+    }
   }
-  &-votesLabel{
+  &-votesLabel {
     background-color: $primary-color;
     padding: $spacing-s $spacing-ml;
     font-weight: bold;
-    border-radius:3px;
+    border-radius: 3px;
   }
-  &-buttonContainer{
+  &-buttonContainer {
     margin-left: $spacing-xxl;
-    position: relative; 
-    display: flex;  
-    align-items: center; 
-    button{
+    position: relative;
+    display: flex;
+    align-items: center;
+    button {
       height: 60px;
       width: 180px;
       margin-right: $spacing-xl;
@@ -138,42 +131,38 @@
       @include for-phone-only {
         height: 60px;
         width: 140px;
-      } 
+      }
     }
-    &-watchButton{
+    &-watchButton {
       background-color: $purple-color;
       color: $primary-color;
-      transition: transform .2s ease-in
-      
-    }    
-    &-watchlistButton{
+      transition: transform 0.2s ease-in;
+    }
+    &-watchlistButton {
       color: $purple-color;
       background-color: transparent;
-      border: 3px solid $purple-color!important;
-      transition: transform .2s ease-in-out
-    }  
-    &-watchButton:hover{
+      border: 3px solid $purple-color !important;
+      transition: transform 0.2s ease-in-out;
+    }
+    &-watchButton:hover {
       transform: scale(1.1);
     }
     @keyframes swapColors {
       0% {
-          background-color: transparent;
-          color: $purple-color;
-      }       
-      
-      100% {
-          background-color: $purple-color;
-          color: $primary-color;
+        background-color: transparent;
+        color: $purple-color;
       }
-  }
-    &-watchlistButton:hover{
+
+      100% {
+        background-color: $purple-color;
+        color: $primary-color;
+      }
+    }
+    &-watchlistButton:hover {
       color: $primary-color;
-      background:linear-gradient(to left, transparent, $purple-color);
+      background: linear-gradient(to left, transparent, $purple-color);
       background-color: $purple-color;
       animation: swapColors 1s ease-out;
     }
-  
-
-}
-
+  }
 }

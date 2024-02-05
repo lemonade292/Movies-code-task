@@ -45,7 +45,9 @@ export const MoviesList: React.FC<ReduxProps> = ({
             ? "moviesListTitle_collapsed"
             : "moviesListTitle_expanded"
         }
-      >Movies List</h1>
+      >
+        Movies List
+      </h1>
       <div
         className={
           isDetailOpen
@@ -56,7 +58,8 @@ export const MoviesList: React.FC<ReduxProps> = ({
         {movies &&
           movies.map((movie: Movie) => (
             <div
-              className="movieItem" data-testid="movieItem"
+              className="movieItem"
+              data-testid="movieItem"
               onClick={() => {
                 setSelectedMovie(movie);
                 setIsDetailOpen(true);

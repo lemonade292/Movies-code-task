@@ -19,8 +19,6 @@ export const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
   setIsDetailOpen,
   genres,
 }) => {
-  
-
   const buildGenreList = useCallback(
     (idList: number[]): string[] => {
       const genreList = idList.map((id) => {
@@ -62,9 +60,13 @@ export const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
             <h1>{movie.title}</h1>
             <div className="movieDetail-infoContainer">
               <div className="movieDetail-genreContainer">
-                {buildGenreList(movie.genreIds).map((genre,index) => (
-                  index<movie.genreIds.length-1 ? <label>{genre} | </label> : <label>{genre}</label>                  
-                ))}
+                {buildGenreList(movie.genreIds).map((genre, index) =>
+                  index < movie.genreIds.length - 1 ? (
+                    <label>{genre} | </label>
+                  ) : (
+                    <label>{genre}</label>
+                  )
+                )}
               </div>
               <div className="movieDetail-votesContainer">
                 <label className="movieDetail-votesLabel">
