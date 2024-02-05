@@ -32,7 +32,7 @@
       overflow: scroll;
       overflow-x: hidden;
       @include for-phone-only {
-        max-height: 450px
+        max-height: 300px
       }
     }
     &_expanded {

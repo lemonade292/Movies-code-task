@@ -13,7 +13,7 @@
 #movieDetail_expanded {
     max-height: calc(100vh - 450px);
     @include for-phone-only {
-      min-height: calc(100vh - 450px);
+      min-height: calc(100vh - 300px);
     }
 }
 .movieDetail {
@@ -33,7 +33,7 @@
     object-fit: cover;
     object-position: center 10%;
     @include for-phone-only {
-      min-height: calc(100vh - 450px);
+      min-height: calc(100vh - 300px);
     }
   }
   &-closeButton{
