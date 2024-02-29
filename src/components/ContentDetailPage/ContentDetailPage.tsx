@@ -84,9 +84,9 @@ export const ContentDetailPage = () => {
                   <div className="movieDetail-genreContainer">
                     {movie?.genres.map((genre,index) => (                      
                       index < movie.genres.length - 1 ? (
-                        <label>{genre.name} | </label>
+                        <label key={genre.id}>{genre.name} | </label>
                       ) : (
-                        <label>{genre.name}</label>
+                        <label key={genre.id}>{genre.name}</label>
                       )
                     ))}
                     {/* {movie.genres.map((genre, index) =>
