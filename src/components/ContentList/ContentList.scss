@@ -11,12 +11,11 @@
   .moviesListTitle_collapsed {
     display: none;
   }
-  .moviesSwitchButtonsDiv{
-   
-    &_expanded{
+  .moviesSwitchButtonsDiv {
+    &_expanded {
       margin-left: $spacing-xxxl;
-      margin-top: $spacing-xxl ;
-      button{
+      margin-top: $spacing-xxl;
+      button {
         height: $spacing-l;
         border: none;
         color: $text-color;
@@ -24,14 +23,14 @@
         font-size: $font-size-m;
         cursor: pointer;
         opacity: 0.7;
-        margin-right: $spacing-l
+        margin-right: $spacing-l;
       }
-      button:hover{
+      button:hover {
         opacity: 1;
         transform: scale(1.1);
       }
     }
-    &_collapsed{
+    &_collapsed {
       display: none;
     }
   }
@@ -80,7 +79,7 @@
       object-fit: cover;
       object-position: center 10%;
     }
-    &-detailButton{
+    &-detailButton {
       position: absolute;
       top: 0;
       right: 0;
@@ -92,10 +91,9 @@
       opacity: 0.7;
       cursor: pointer;
     }
-    &-detailButton:hover{
+    &-detailButton:hover {
       opacity: 1;
       transform: scale(1.05);
-      
     }
     &-infoContainer {
       position: absolute;

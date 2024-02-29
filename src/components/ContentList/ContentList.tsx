@@ -28,7 +28,7 @@ export const ContentList: React.FC<ReduxProps> = ({
   const [selectedMovie, setSelectedMovie] = useState<null | Content>(null);
   const [isMoviesSelected, setIsMoviesSelected] = useState<boolean>(true);
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMoviesAction();
@@ -49,15 +49,27 @@ export const ContentList: React.FC<ReduxProps> = ({
           setIsDetailOpen={setIsDetailOpen}
         />
       )}
-      <div className={isDetailOpen
+      <div
+        className={
+          isDetailOpen
             ? "moviesSwitchButtonsDiv_collapsed"
-            : "moviesSwitchButtonsDiv_expanded"}>
-        <button onClick={() => {                
-                setIsMoviesSelected(true);
-              }}>Movies</button>
-        <button onClick={() => {                
-                setIsMoviesSelected(false);
-              }}>TV Shows</button>
+            : "moviesSwitchButtonsDiv_expanded"
+        }
+      >
+        <button
+          onClick={() => {
+            setIsMoviesSelected(true);
+          }}
+        >
+          Movies
+        </button>
+        <button
+          onClick={() => {
+            setIsMoviesSelected(false);
+          }}
+        >
+          TV Shows
+        </button>
       </div>
       <h1
         className={
@@ -66,9 +78,7 @@ export const ContentList: React.FC<ReduxProps> = ({
             : "moviesListTitle_expanded"
         }
       >
-        {
-          isMoviesSelected ? "Movies" : "TV Shows"
-        }
+        {isMoviesSelected ? "Movies" : "TV Shows"}
       </h1>
       <div
         className={
@@ -77,58 +87,62 @@ export const ContentList: React.FC<ReduxProps> = ({
             : "moviesContainer_expanded"
         }
       >
-        {isMoviesSelected ? movies &&
-          movies.map((movie: Content) => (
-            <div
-              className="movieItem"
-              data-testid="movieItem"
-              onClick={(e) => {
-                e.stopPropagation()                  
-                navigate(`/movies/${movie.ID}`)            
-              }}
-              key={movie.ID}
-            >
-              <img src={movie.imageURL} alt={movie.title} />
-              <button className="movieItem-detailButton" onClick={(e)=>{
-                e.stopPropagation()
-                setSelectedMovie(movie);
-                setIsDetailOpen(true);
-              }}><img src={magnifierButton} alt="close button" /></button>
-              <div className="movieItem-infoContainer">
-                <p className="movieItem-movieTitle">{movie.title}</p>
-                <div className="movieItem-dateVoteInfo">
-                  <p className="movieItem-date">
-                    {" "}
-                    Released: {movie.release_date}
-                  </p>
-                  <p className="movieItem-voteCount">{movie.renderVotes()}</p>
+        {isMoviesSelected
+          ? movies &&
+            movies.map((movie: Content) => (
+              <div
+                className="movieItem"
+                data-testid="movieItem"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(`/movies/${movie.ID}`);
+                }}
+                key={movie.ID}
+              >
+                <img src={movie.imageURL} alt={movie.title} />
+                <button
+                  className="movieItem-detailButton"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedMovie(movie);
+                    setIsDetailOpen(true);
+                  }}
+                >
+                  <img src={magnifierButton} alt="close button" />
+                </button>
+                <div className="movieItem-infoContainer">
+                  <p className="movieItem-movieTitle">{movie.title}</p>
+                  <div className="movieItem-dateVoteInfo">
+                    <p className="movieItem-date">
+                      {" "}
+                      Released: {movie.release_date}
+                    </p>
+                    <p className="movieItem-voteCount">{movie.renderVotes()}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          )) : shows &&
-          shows.map((show: Content) => (
-            <div
-              className="movieItem"
-              data-testid="movieItem"
-              onClick={() => {               
-                navigate(`/shows/${show.ID}`)
-              }}
-              key={show.ID}
-            >
-              <img src={show.imageURL} alt={show.title} />
-              
-              <div className="movieItem-infoContainer">
-                <p className="movieItem-movieTitle">{show.title}</p>
-                <div className="movieItem-dateVoteInfo">
-                  <p className="movieItem-date">
-                    {" "}
-                    Votes: {show.voteCount}
-                  </p>
-                  <p className="movieItem-voteCount">{show.renderVotes()}</p>
+            ))
+          : shows &&
+            shows.map((show: Content) => (
+              <div
+                className="movieItem"
+                data-testid="movieItem"
+                onClick={() => {
+                  navigate(`/shows/${show.ID}`);
+                }}
+                key={show.ID}
+              >
+                <img src={show.imageURL} alt={show.title} />
+
+                <div className="movieItem-infoContainer">
+                  <p className="movieItem-movieTitle">{show.title}</p>
+                  <div className="movieItem-dateVoteInfo">
+                    <p className="movieItem-date"> Votes: {show.voteCount}</p>
+                    <p className="movieItem-voteCount">{show.renderVotes()}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
       </div>
     </div>
   );
@@ -137,7 +151,7 @@ export const ContentList: React.FC<ReduxProps> = ({
 const mapStateToProps = (state: any, props: any) => {
   return {
     movies: state.moviesStore.movies,
-    shows: state.showsStore.shows
+    shows: state.showsStore.shows,
   };
 };
 

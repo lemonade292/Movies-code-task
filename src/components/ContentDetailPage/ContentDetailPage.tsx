@@ -28,14 +28,14 @@ export const ContentDetailPage = () => {
         });
       } else {
         getShowByID(contentID).then((movie: Content) => {
-                setMovie(movie);
-            });
-            getShowRecomendations(contentID).then((recommendedArr: Content[]) => {
-                setRecomendedArr(recommendedArr);
-            });
+          setMovie(movie);
+        });
+        getShowRecomendations(contentID).then((recommendedArr: Content[]) => {
+          setRecomendedArr(recommendedArr);
+        });
       }
     }
-  }, [platform,contentID]);
+  }, [platform, contentID]);
 
   const handleGoToRecommended = (
     platform: string | undefined,
@@ -82,13 +82,13 @@ export const ContentDetailPage = () => {
                 <h1>{movie.title}</h1>
                 <div className="movieDetail-infoContainer">
                   <div className="movieDetail-genreContainer">
-                    {movie?.genres.map((genre,index) => (                      
+                    {movie?.genres.map((genre, index) =>
                       index < movie.genres.length - 1 ? (
                         <label key={genre.id}>{genre.name} | </label>
                       ) : (
                         <label key={genre.id}>{genre.name}</label>
                       )
-                    ))}
+                    )}
                     {/* {movie.genres.map((genre, index) =>
                   index < movie.genreIds.length - 1 ? (
                     <label>{genre.name} | </label>
@@ -156,5 +156,3 @@ export const ContentDetailPage = () => {
     </div>
   );
 };
-
-
