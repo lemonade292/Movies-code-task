@@ -11,6 +11,30 @@
   .moviesListTitle_collapsed {
     display: none;
   }
+  .moviesSwitchButtonsDiv{
+   
+    &_expanded{
+      margin-left: $spacing-xxxl;
+      margin-top: $spacing-xxl ;
+      button{
+        height: $spacing-l;
+        border: none;
+        color: $text-color;
+        background-color: transparent;
+        font-size: $font-size-m;
+        cursor: pointer;
+        opacity: 0.7;
+        margin-right: $spacing-l
+      }
+      button:hover{
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+    &_collapsed{
+      display: none;
+    }
+  }
   .moviesContainer_collapsed,
   .moviesContainer_expanded {
     padding: $spacing-xxl 0;
@@ -55,6 +79,23 @@
       max-height: 350px;
       object-fit: cover;
       object-position: center 10%;
+    }
+    &-detailButton{
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: $z-index-1;
+      width: $spacing-xxxl;
+      height: $spacing-xxxl;
+      background-color: transparent;
+      border: none;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+    &-detailButton:hover{
+      opacity: 1;
+      transform: scale(1.05);
+      
     }
     &-infoContainer {
       position: absolute;

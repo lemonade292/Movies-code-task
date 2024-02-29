@@ -6,6 +6,7 @@ export const getAllGenres = async (): Promise<{ genres: genreItem[] }> => {
     "https://api.themoviedb.org/3/genre/movie/list?language=en",
     options
   );
+ 
   const formatedResponse = response.json();
   return formatedResponse;
 };

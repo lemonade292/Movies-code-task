@@ -2,7 +2,8 @@ export interface MovieItemFromAPI {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
-  id: number;
+  genres: genreItem[];
+  id: string;
   original_language: string;
   original_title: string;
   overview: string;
@@ -15,17 +16,37 @@ export interface MovieItemFromAPI {
   vote_count: number;
 }
 
+export interface ShowItemFromAPI{
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  genres: genreItem[];
+  id: string;
+  name: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
 export type genreItem = {
   id: number;
   name: string;
 };
 
+
 interface IMovie {
   renderVotes(): string;
 }
 
-export class Movie implements IMovie {
-  readonly ID: number;
+export class Content implements IMovie {
+  public ID: string;
   public overview: string;
   public title: string;
   public imageURL: string;
@@ -34,17 +55,20 @@ export class Movie implements IMovie {
   public backdropURL: string;
   public genreIds: number[];
   public release_date: string;
+  public genres:genreItem[];
 
-  constructor(movieFromAPI: MovieItemFromAPI) {
-    this.ID = movieFromAPI.id;
-    this.overview = movieFromAPI.overview;
-    this.title = movieFromAPI.title;
-    this.imageURL = this.buildImgURL(movieFromAPI.poster_path);
-    this.backdropURL = this.buildImgURL(movieFromAPI.backdrop_path);
-    this.voteAverage = movieFromAPI.vote_average;
-    this.voteCount = movieFromAPI.vote_count;
-    this.genreIds = movieFromAPI.genre_ids;
-    this.release_date = movieFromAPI.release_date;
+  constructor(contentFromAPI: MovieItemFromAPI|ShowItemFromAPI) {
+    this.ID = contentFromAPI.id;
+    this.overview = contentFromAPI.overview;    
+    this.title = 'title' in contentFromAPI ? contentFromAPI.title : contentFromAPI.name;
+   
+    this.imageURL = this.buildImgURL(contentFromAPI.poster_path);
+    this.backdropURL = this.buildImgURL(contentFromAPI.backdrop_path);
+    this.voteAverage = contentFromAPI.vote_average;
+    this.voteCount = contentFromAPI.vote_count;
+    this.genreIds = contentFromAPI.genre_ids;
+    this.release_date = contentFromAPI.release_date;
+    this.genres=contentFromAPI.genres
   }
 
   public buildImgURL(url: string): string {

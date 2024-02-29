@@ -1,14 +1,15 @@
 import { render, cleanup, screen } from "@testing-library/react";
-import { Movie, genreItem } from "../../api/types";
-import { MovieDetail } from "../MovieDetail/MovieDetail";
+import { Content, genreItem } from "../../api/types";
+import { ContentDetail } from "./ContentDetail";
 
-describe("[MovieDetail]", () => {
-  const movie: Movie = {
-    ID: 1,
+describe("[ContentDetail]", () => {
+  const movie: Content = {
+    ID: "1",
     overview: "",
     title: "Movie 1", // Provide a title
     release_date: "2022-01-01",
     genreIds: [],
+    genres:[],
     imageURL: "path/to/image",
     backdropURL: "path/to/backdrop",
     voteCount: 2,
@@ -22,14 +23,14 @@ describe("[MovieDetail]", () => {
   afterEach(() => {
     cleanup();
   });
-  it("should render the MovieDetail component", () => {
+  it("should render the ContentDetail component", () => {
     render(
-      <MovieDetail
+      <ContentDetail
         movie={movie}
         isDetailOpen={isDetailOpen}
         setIsDetailOpen={setIsDetailOpen}
         genres={genres}
-      ></MovieDetail>
+      ></ContentDetail>
     );
 
     const list = screen.getByTestId("movieDetail");

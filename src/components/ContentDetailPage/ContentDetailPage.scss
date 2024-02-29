@@ -1,0 +1,271 @@
+@import "../../styles/config.scss";
+
+
+#movieDetail_expanded {
+  max-height: calc(100vh - 450px);
+  overflow: hidden;
+  @include for-phone-only {
+    min-height: calc(100vh - 300px);
+  }
+}
+.movieDetail {
+  overflow: hidden;
+  position: relative;
+  font-size: $font-size-m;
+  @include for-lowResDesktop-only {
+    font-size: $font-size-s;
+  }
+  @include for-phone-only {
+    font-size: $font-size-s;
+  }
+  &-backdrop {
+    filter: brightness(50%);
+    width: 100vw;
+    max-height: calc(100vh - 450px);
+    object-fit: cover;
+    object-position: center 10%;
+    @include for-phone-only {
+      min-height: calc(100vh - 300px);
+    }
+  }
+  &-detailButton {
+    position: absolute;
+    top: $spacing-xl;
+    right: $spacing-xl;
+    z-index: $z-index-1;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    
+    img {
+      width: 64px;
+      padding: 0;
+      transition: transform 0.2s;
+      @include for-phone-only {
+        width: 48px;
+      }
+    }
+    img:hover {
+      transform: scale(1.4);
+
+    }
+
+  }
+  &-detailButton-backButton{
+    position: absolute;
+    top: $spacing-xl;
+    right: calc($spacing-xxl * 4) ;
+    z-index: $z-index-1;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    
+    img {
+      width: 64px;
+      padding: 0;
+      transition: transform 0.2s;
+      @include for-phone-only {
+        width: 48px;
+      }
+    }
+    img:hover {
+      transform: scale(1.4);
+
+    }
+  }
+
+  &-textContainer {
+    position: absolute;
+    bottom: $spacing-xl;
+    z-index: $z-index-1;
+    padding: 2em 8em;
+    max-width: 60%;
+    @include for-lowResDesktop-only {
+      padding: $spacing-l $spacing-xl;
+      max-width: 70%;
+    }
+    @include for-phone-only {
+      padding: $spacing-xl $spacing-xl;
+      max-width: 100%;
+    }
+    h1 {
+      font-size: $font-size-xl;
+      text-transform: uppercase;
+      margin-bottom: $spacing-xl;
+
+      @include for-lowResDesktop-only {
+        font-size: $font-size-l;
+      }
+      @include for-phone-only {
+        font-size: $font-size-m;
+      }
+    }
+    p {
+      margin-bottom: $spacing-xxl;
+      margin-left: $spacing-xxl;
+    }
+  }
+
+  &-infoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+  }
+  &-genreContainer {
+    margin-left: $spacing-xxl;
+  }
+  &-votesContainer {
+    margin-right: $spacing-xxxl;
+    @include for-phone-only {
+      margin-right: 0;
+      min-width: 145px;
+    }
+  }
+  &-votesLabel {
+    background-color: $primary-color;
+    padding: $spacing-s $spacing-ml;
+    font-weight: bold;
+    border-radius: 3px;
+  }
+  &-buttonContainer {
+    margin-left: $spacing-xxl;
+    position: relative;
+    display: flex;
+    align-items: center;
+    button {
+      height: 60px;
+      width: 180px;
+      margin-right: $spacing-xl;
+      font-size: $font-size-s;
+      border-radius: 3px;
+      cursor: pointer;
+      border: none;
+      opacity: 1;
+      font-weight: bold;
+      @include for-phone-only {
+        height: 60px;
+        width: 140px;
+      }
+    }
+    &-watchButton {
+      background-color: $purple-color;
+      color: $primary-color;
+      transition: transform 0.2s ease-in;
+    }
+    &-watchlistButton {
+      color: $purple-color;
+      background-color: transparent;
+      border: 3px solid $purple-color !important;
+      transition: transform 0.2s ease-in-out;
+    }
+    &-watchButton:hover {
+      transform: scale(1.1);
+    }
+    @keyframes swapColors {
+      0% {
+        background-color: transparent;
+        color: $purple-color;
+      }
+
+      100% {
+        background-color: $purple-color;
+        color: $primary-color;
+      }
+    }
+    &-watchlistButton:hover {
+      color: $primary-color;
+      background: linear-gradient(to left, transparent, $purple-color);
+      background-color: $purple-color;
+      animation: swapColors 1s ease-out;
+    }
+  }
+}
+
+
+.moviesContainer {
+   
+     
+      @include for-phone-only {
+        max-height: 300px;
+      }
+    
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-height: 20%;
+    
+  }
+.movieItem {
+    min-width: 300px;
+    height: 350px;
+    margin-top: $spacing-xl;
+    margin-left: $spacing-xl;
+    border-radius: 3px;
+    box-shadow: 0.2px 3px 5px rgba(0, 0, 0, 0.1);
+    background-color: $secondary-color;
+    transition: transform 0.2s;
+    position: relative;
+    cursor: pointer;
+    img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      max-height: 350px;
+      object-fit: cover;
+      object-position: center 10%;
+    }
+    &-infoContainer {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: auto;
+      width: 100%;
+      background-color: $secondary-color;
+      background: linear-gradient(
+        180deg,
+        rgba(40, 40, 40, 0.6) 0%,
+        rgba(40, 40, 40, 0.75) 15%,
+        rgba(40, 40, 40, 0.9) 30%,
+        rgba(40, 40, 40, 1) 100%
+      );
+    }
+    &-movieTitle {
+      font-weight: bold;
+      text-align: center;
+      font-size: $font-size-s;
+      margin-top: $spacing-ml;
+    }
+    &-dateVoteInfo {
+      height: 30px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      margin: $spacing-m;
+    }
+    &-voteCount {
+      background-color: $primary-color;
+      padding: $spacing-s $spacing-ml;
+      border-radius: 3px;
+    }
+  }
+  .movieItem:hover {
+    transform: scale(1.05);
+  }
+
+  .recommendationsContainer{
+    h1{
+        margin-top: $spacing-l;
+        text-align: center;
+    }
+  }

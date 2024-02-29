@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
 import closeButton from "../../assets/icons/closeButton.svg";
-import { Movie, genreItem } from "../../api/types";
+import { Content, genreItem } from "../../api/types";
 import { connect } from "react-redux";
-import "./MovieDetail.scss";
+import "./ContentDetail.scss";
 
 interface OwnProps {
-  movie: Movie;
+  movie: Content;
   isDetailOpen: boolean;
   setIsDetailOpen: (bol: boolean) => void;
 }
@@ -13,7 +13,7 @@ interface ReduxProps {
   genres: genreItem[];
 }
 
-export const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
+export const ContentDetail: React.FC<OwnProps & ReduxProps> = ({
   movie,
   isDetailOpen,
   setIsDetailOpen,
@@ -62,9 +62,9 @@ export const MovieDetail: React.FC<OwnProps & ReduxProps> = ({
               <div className="movieDetail-genreContainer">
                 {buildGenreList(movie.genreIds).map((genre, index) =>
                   index < movie.genreIds.length - 1 ? (
-                    <label>{genre} | </label>
+                    <label key={index}>{genre} | </label>
                   ) : (
-                    <label>{genre}</label>
+                    <label key={index}>{genre}</label>
                   )
                 )}
               </div>
@@ -100,4 +100,4 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const MovieDetailConnected = connect(mapStateToProps)(MovieDetail);
+export const ContentDetailConnected = connect(mapStateToProps)(ContentDetail);
